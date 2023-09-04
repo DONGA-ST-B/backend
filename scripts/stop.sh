@@ -1,5 +1,5 @@
 PROJECT_ROOT="/home/ubuntu/app"
-JAR_FILE="$PROJECT_ROOT/sever0.0.1-SNAPSHOP.jar"
+JAR_FILE="$PROJECT_ROOT/sever-0.0.1-SNAPSHOP.jar"
 DEPLOY_LOG="$PROJECT_ROOT/deploy.log"
 TIME_NOW=$(date +%c)
 # 현재 구동 중인 애플리케이션 pid 확인
