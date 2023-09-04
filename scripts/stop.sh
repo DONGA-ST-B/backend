@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/env bash
 PROJECT_ROOT="/home/ubuntu/app"
 JAR_FILE="$PROJECT_ROOT/spring-webapp.jar"
@@ -27,4 +26,3 @@ else
   echo "$TIME_NOW > 실행중인 $CURRENT_PID 애플리케이션 종료 " >> $DEPLOY_LOG
   kill -15 $CURRENT_PID
   fi
->>>>>>> 84705ca897e1c75ef0fbd9def49969fea0552dd3
