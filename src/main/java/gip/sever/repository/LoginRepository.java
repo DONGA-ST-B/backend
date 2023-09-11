@@ -1,0 +1,7 @@
+package gip.sever.repository;
+
+import gip.sever.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LoginRepository extends JpaRepository<Member,Long> {
+}
