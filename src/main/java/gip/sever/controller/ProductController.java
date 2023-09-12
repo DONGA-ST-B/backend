@@ -13,11 +13,12 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api/product")
 public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/product/all")
+    @GetMapping("/all")
     public ResponseEntity<List<ProductResponse>> getAllProduct() {
         List<ProductResponse> promotions = productService.getAllProducts();
         return new ResponseEntity<>(promotions, HttpStatus.OK);
