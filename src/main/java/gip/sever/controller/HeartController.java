@@ -16,8 +16,8 @@ public class HeartController {
 
     @PostMapping("/toggle")
     public ResponseEntity<String> toggleHeart(
-            @RequestParam int memberId,
-            @RequestParam int productId) {
+            @RequestParam Long memberId,
+            @RequestParam Long productId) {
         boolean toggled = heartService.toggleHeart(memberId, productId);
         if (toggled) {
             return ResponseEntity.ok("좋아요 버튼이 활성화되었습니다.");
