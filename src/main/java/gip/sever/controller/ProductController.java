@@ -21,11 +21,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping("/all")
-    public ResponseEntity<List<ProductResponse>> getAllProduct() {
-        List<ProductResponse> promotions = productService.getAllProducts();
-        return new ResponseEntity<>(promotions, HttpStatus.OK);
-    }
     // 카테고리별 제품을 반환하는 엔드포인트
     @GetMapping("/category/{category}")
     public List<Product> getProductsByCategory(@PathVariable Category category) {
