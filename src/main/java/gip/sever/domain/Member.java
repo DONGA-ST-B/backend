@@ -13,6 +13,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "member_id")
     private Long id;
     private String account;
 
@@ -20,6 +21,6 @@ public class Member {
 
     private String name;
 
-    @OneToMany(mappedBy = "heart", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Heart> hearts;
 }

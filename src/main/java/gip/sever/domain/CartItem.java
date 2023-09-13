@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cartItem_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

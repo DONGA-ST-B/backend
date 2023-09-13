@@ -24,7 +24,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
     public List<Product> getProductsByCategory(Category category) {
-        if (Category.전체.equals(category)) {
+        if (Category.TOTAL.equals(category)) {
             return productRepository.findAll();
         } else {
             return productRepository.findByCategory(category);
