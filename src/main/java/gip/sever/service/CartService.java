@@ -23,7 +23,7 @@ public class CartService {
         Cart cart = cartRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));;
         Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException("Product not found"));
-        cart.addProduct(product);
+//        cart.addProduct(product);
         cartRepository.save(cart);
     }
 
@@ -32,13 +32,16 @@ public class CartService {
         Cart cart = cartRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));;
         Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException("Product not found"));
-        cart.removeProduct(product);
+//        cart.removeProduct(product);
         cartRepository.save(cart);
     }
 
     public CartResponse getCart(Long memberId) throws Exception{
         Cart cart = cartRepository.findByMemberId(memberId)
                 .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
+        // CartItem 에서 memberId랑 cartId로 cartItems 찾기
+
+
         return new CartResponse(cart);
     }
 
