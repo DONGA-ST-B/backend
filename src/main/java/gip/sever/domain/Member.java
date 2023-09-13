@@ -3,10 +3,8 @@ package gip.sever.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -21,4 +19,7 @@ public class Member {
     private String password;
 
     private String name;
+
+    @OneToMany(mappedBy = "heart", cascade = CascadeType.ALL)
+    private List<Heart> hearts;
 }
