@@ -22,5 +22,6 @@ public class Member {
     private String name;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+
     private List<Heart> hearts;
 }
