@@ -24,12 +24,10 @@ public class CartResponse {
     private List<CartItem> cartItems = new ArrayList<>();
 
 
-    private Member member;
-
     public CartResponse(Cart cart) {
-        this.cartItems=cart.getCartItems();
+
+//        this.cartItems=cart.getCartItems();
         this.id=cart.getId();
-        this.member=cart.getMember();
 
     }
 }

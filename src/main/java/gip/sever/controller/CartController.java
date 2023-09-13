@@ -29,7 +29,7 @@ public class CartController {
 
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<CartResponse> getCart(@RequestParam Long memberId) throws Exception {
+    public ResponseEntity<CartResponse> getCart(@PathVariable Long memberId) throws Exception {
         return new ResponseEntity<>( cartService.getCart(memberId), HttpStatus.OK);
     }
 }
