@@ -16,6 +16,7 @@ public class ProductService {
 
 
     public List<ProductResponse> getAllProducts() {
+        //리스트로 데이터 넘겨주기
         List<Product> promotions = productRepository.findAll();
         return promotions.stream()
                 .map(ProductResponse::new)

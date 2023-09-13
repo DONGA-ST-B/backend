@@ -14,20 +14,20 @@ public class HeartService {
 
 
     public boolean toggleHeart(Long memberId, Long productId) {
-        // memberId와 productId를 사용하여 Heart 엔터티를 조회합니다.
+        // memberId와 productId를 사용하여 엔티티 조회
         Heart existingHeart = heartRepository.findByMemberIdAndProductId(memberId, productId);
 
         if (existingHeart == null) {
-            // Heart 엔터티가 없으면 새로운 엔터티를 생성하고 저장합니다.
+            // Heart 엔티티가 없으면 새로운 엔티티를 생성, 저장
             Heart newHeart = new Heart();
             newHeart.setMember_id(memberId);
             newHeart.setProduct_id(productId);
             heartRepository.save(newHeart);
-            return true; // 버튼이 활성화되었습니다.
+            return true;
         } else {
-            // Heart 엔터티가 이미 존재하면 삭제합니다.
+            // Heart 엔티티가 이미 존재하면 삭제
             heartRepository.delete(existingHeart);
-            return false; // 버튼이 비활성화되었습니다.
+            return false;
         }
     }
 }
