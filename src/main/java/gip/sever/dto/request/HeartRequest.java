@@ -8,8 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HeartRequest {
-    private Member member;
-    private Product product;
+    private Long memberId;
+    private Long productId;
 
-    // getters and setters
 }
