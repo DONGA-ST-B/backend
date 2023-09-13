@@ -1,5 +1,7 @@
 package gip.sever.controller;
 
+import gip.sever.domain.Member;
+import gip.sever.domain.Product;
 import gip.sever.dto.request.HeartRequest;
 import gip.sever.service.HeartService;
 import lombok.RequiredArgsConstructor;
@@ -17,10 +19,10 @@ public class HeartController {
 
     @PostMapping("/toggle")
     public ResponseEntity<String> toggleHeart(@RequestBody HeartRequest request) {
-        Long memberId = request.getMemberId();
-        Long productId = request.getProductId();
+        Member member = request.getMember();
+        Product product = request.getProduct();
 
-        boolean toggled = heartService.toggleHeart(memberId, productId);
+        boolean toggled = heartService.toggleHeart(member, product);
         if (toggled) {
             return ResponseEntity.ok("좋아요 버튼이 활성화되었습니다.");
         } else {

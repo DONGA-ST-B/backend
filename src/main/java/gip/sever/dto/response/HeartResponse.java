@@ -1,6 +1,8 @@
 package gip.sever.dto.response;
 
 import gip.sever.domain.Heart;
+import gip.sever.domain.Member;
+import gip.sever.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,13 +13,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class HeartResponse {
-    private Long memberId;
-    private Long productId;
+    private Member member;
+    private Product product;
     private boolean isLiked;
 
     public HeartResponse(Heart heart) {
-        this.memberId = heart.getMember_id();
-        this.productId = heart.getProduct_id();
+        this.member = heart.getMember();
+        this.product = heart.getProduct();
         this.isLiked = heart.isLiked();
     }
 

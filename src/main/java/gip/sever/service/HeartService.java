@@ -1,6 +1,8 @@
 package gip.sever.service;
 
 import gip.sever.domain.Heart;
+import gip.sever.domain.Member;
+import gip.sever.domain.Product;
 import gip.sever.repository.HeartRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +15,14 @@ public class HeartService {
     private final HeartRepository heartRepository;
 
 
-    public boolean toggleHeart(Long memberId, Long productId) {
-        // memberId와 productId를 사용하여 엔티티 조회
-        Heart existingHeart = heartRepository.findByMemberIdAndProductId(memberId, productId);
+    public boolean toggleHeart(Member member, Product product) {
+        // member와 product를 사용하여 엔티티 조회
+        Heart existingHeart = heartRepository.findByMemberAndProduct(member, product);
 
         if (existingHeart == null) {
             Heart newHeart = new Heart();
-            newHeart.setMember_id(memberId);
-            newHeart.setProduct_id(productId);
+            newHeart.setMember(member);
+            newHeart.setProduct(product);
             newHeart.setLiked(true);
             heartRepository.save(newHeart);
             return true;
