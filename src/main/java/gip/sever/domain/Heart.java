@@ -33,11 +33,6 @@ public class Heart {
     private boolean isLiked;
 
 
-    public Heart(Long member_id, Long product_id, boolean isLiked) {
-        this.member_id = member_id;
-        this.product_id = product_id;
-        this.isLiked = isLiked;
-    }
 
 
 }

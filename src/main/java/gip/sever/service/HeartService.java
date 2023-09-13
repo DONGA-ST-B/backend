@@ -18,14 +18,13 @@ public class HeartService {
         Heart existingHeart = heartRepository.findByMemberIdAndProductId(memberId, productId);
 
         if (existingHeart == null) {
-            // Heart 엔티티가 없으면 새로운 엔티티를 생성, 저장
             Heart newHeart = new Heart();
             newHeart.setMember_id(memberId);
             newHeart.setProduct_id(productId);
+            newHeart.setLiked(true);
             heartRepository.save(newHeart);
             return true;
         } else {
-            // Heart 엔티티가 이미 존재하면 삭제
             heartRepository.delete(existingHeart);
             return false;
         }

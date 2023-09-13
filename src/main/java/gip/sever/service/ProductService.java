@@ -1,5 +1,6 @@
 package gip.sever.service;
 
+import gip.sever.domain.Category;
 import gip.sever.domain.Product;
 import gip.sever.dto.response.ProductResponse;
 import gip.sever.repository.ProductRepository;
@@ -17,9 +18,16 @@ public class ProductService {
 
     public List<ProductResponse> getAllProducts() {
         //리스트로 데이터 넘겨주기
-        List<Product> promotions = productRepository.findAll();
-        return promotions.stream()
+        List<Product> products = productRepository.findAll();
+        return products.stream()
                 .map(ProductResponse::new)
                 .collect(Collectors.toList());
+    }
+    public List<Product> getProductsByCategory(Category category) {
+        if (Category.전체.equals(category)) {
+            return productRepository.findAll();
+        } else {
+            return productRepository.findByCategory(category);
+        }
     }
 }

@@ -1,5 +1,6 @@
 package gip.sever.controller;
 
+import gip.sever.dto.request.HeartRequest;
 import gip.sever.service.HeartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,10 @@ public class HeartController {
 
 
     @PostMapping("/toggle")
-    public ResponseEntity<String> toggleHeart(
-            @RequestParam Long memberId,
-            @RequestParam Long productId) {
+    public ResponseEntity<String> toggleHeart(@RequestBody HeartRequest request) {
+        Long memberId = request.getMemberId();
+        Long productId = request.getProductId();
+
         boolean toggled = heartService.toggleHeart(memberId, productId);
         if (toggled) {
             return ResponseEntity.ok("좋아요 버튼이 활성화되었습니다.");
@@ -25,5 +27,6 @@ public class HeartController {
             return ResponseEntity.ok("좋아요 버튼이 비활성화되었습니다.");
         }
     }
+
 }
 

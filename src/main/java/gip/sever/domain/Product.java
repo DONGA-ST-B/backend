@@ -3,10 +3,7 @@ package gip.sever.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
@@ -20,6 +17,10 @@ public class Product {
     private double price;
     private String photoUrl;
     private int likes;
+
+    // 카테고리 필드
+    @Enumerated(EnumType.STRING)
+    private Category category;
 
     // 장바구니 필드
     private boolean isInCart; // 제품이 장바구니에 있는지 여부
