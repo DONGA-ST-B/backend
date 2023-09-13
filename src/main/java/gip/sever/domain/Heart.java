@@ -23,11 +23,11 @@ public class Heart {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "member_id", referencedColumnName = "id")
+    @JoinColumn(name = "member_id")
     private Member member;
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     private boolean isLiked;
