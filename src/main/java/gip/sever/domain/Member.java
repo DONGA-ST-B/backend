@@ -13,11 +13,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-<<<<<<< HEAD
-    @Column(name = "product_id")
-=======
     @Column(name = "member_id")
->>>>>>> c4962aa068cee0fc9912c582232e2c4017d6f018
     private Long id;
     private String account;
 
