@@ -1,6 +1,6 @@
 package gip.sever.service;
 
-import gip.sever.repository.LoginRepository;
+import gip.sever.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class LoginService {
 
-    private final LoginRepository loginRepository;
+    private final MemberRepository memberRepository;
 }

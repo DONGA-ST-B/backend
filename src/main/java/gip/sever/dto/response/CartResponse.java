@@ -19,8 +19,6 @@ import java.util.List;
 public class CartResponse {
 
     private Long id;
-
-
     private List<CartItem> cartItems = new ArrayList<>();
 
 
