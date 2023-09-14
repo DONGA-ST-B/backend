@@ -15,7 +15,6 @@ import static gip.sever.ResponseMessage.GET_CART_SUCCESS;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/cart")
-@CrossOrigin(origins = "*")
 public class CartController {
 
     private final CartService cartService;

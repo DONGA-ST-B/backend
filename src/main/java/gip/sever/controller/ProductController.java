@@ -19,7 +19,6 @@ import static gip.sever.ResponseMessage.GET_PRODUCT_SUCCESS;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/product")
-@CrossOrigin(origins = "*")
 public class ProductController {
 
     private final ProductService productService;

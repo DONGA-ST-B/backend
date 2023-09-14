@@ -13,7 +13,6 @@ import static gip.sever.ResponseMessage.MAIL_SUCCESS;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/demo")
-@CrossOrigin(origins = "*")
 public class MailController {
 
     private final MailService mailService;
