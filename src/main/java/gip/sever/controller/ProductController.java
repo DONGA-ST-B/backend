@@ -31,7 +31,7 @@ public class ProductController {
     public List<Product> getProductsByCategory(@PathVariable Category category) {
         return productService.getProductsByCategory(category);
     }*/
-    @GetMapping("/{category}")
+    @GetMapping("/category/{category}")
     public ResponseEntity<SuccessResponse<List<ProductResponse>>> getProductsByCategory(@PathVariable Category category) {
         List<ProductResponse> products = productService.getProductsByCategory(category);
         SuccessResponse<List<ProductResponse>> successResponse = SuccessResponse.create(GET_PRODUCT_SUCCESS.getMessage(), products);
