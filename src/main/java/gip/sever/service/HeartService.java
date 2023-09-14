@@ -7,7 +7,6 @@ import gip.sever.repository.HeartRepository;
 import gip.sever.repository.LoginRepository;
 import gip.sever.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
