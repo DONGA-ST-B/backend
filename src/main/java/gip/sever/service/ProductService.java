@@ -16,13 +16,6 @@ public class ProductService {
     private final ProductRepository productRepository;
 
 
-    public List<ProductResponse> getAllProducts() {
-        //리스트로 데이터 넘겨주기
-        List<Product> products = productRepository.findAll();
-        return products.stream()
-                .map(ProductResponse::new)
-                .collect(Collectors.toList());
-    }
     public List<Product> getProductsByCategory(Category category) {
         if (Category.TOTAL.equals(category)) {
             return productRepository.findAll();
