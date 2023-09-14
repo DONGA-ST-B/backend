@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import static gip.sever.ResponseMessage.*;
@@ -28,9 +29,11 @@ public class HeartController {
 
 
     @PostMapping("/toggle/{productId}")
-    public ResponseEntity<SuccessResponse<String>> toggleHeart(@PathVariable Long productId) {
+    public ResponseEntity<SuccessResponse<String>> toggleHeart(HttpServletRequest request, @PathVariable Long productId) {
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+
         Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
         Long memberId = member.getId();
 
