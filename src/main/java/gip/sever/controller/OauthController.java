@@ -13,7 +13,8 @@ import java.io.IOException;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/auth")
+@RequestMapping(value = "/api/auth")
+@CrossOrigin(origins = "*")
 public class OauthController {
 
     private final OauthService oauthService;

@@ -19,6 +19,7 @@ import static gip.sever.ResponseMessage.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/heart")
+@CrossOrigin(origins = "*")
 public class HeartController {
 
     private final HeartService heartService;
