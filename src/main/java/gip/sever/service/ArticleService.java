@@ -18,8 +18,8 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
     public List<ArticleResponse> getAllarticles() {
         //리스트로 데이터 넘겨주기
-        List<Article> products = articleRepository.findAll();
-        return products.stream()
+        List<Article> articles = articleRepository.findAll();
+        return articles.stream()
                 .map(ArticleResponse::new)
                 .collect(Collectors.toList());
     }
