@@ -1,7 +1,9 @@
 package gip.sever.service;
 
+import gip.sever.domain.Article;
 import gip.sever.domain.Category;
 import gip.sever.domain.Product;
+import gip.sever.dto.response.ArticleResponse;
 import gip.sever.dto.response.ProductResponse;
 import gip.sever.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,18 +18,18 @@ public class ProductService {
     private final ProductRepository productRepository;
 
 
-    public List<ProductResponse> getAllProducts() {
-        //리스트로 데이터 넘겨주기
-        List<Product> products = productRepository.findAll();
-        return products.stream()
-                .map(ProductResponse::new)
-                .collect(Collectors.toList());
-    }
-    public List<Product> getProductsByCategory(Category category) {
+    public List<ProductResponse> getProductsByCategory(Category category) {
         if (Category.TOTAL.equals(category)) {
-            return productRepository.findAll();
+            List<Product> products = productRepository.findAll();
+            return products.stream()
+                    .map(ProductResponse::new)
+                    .collect(Collectors.toList());
         } else {
-            return productRepository.findByCategory(category);
+            List<Product> products = productRepository.findByCategory(category);
+            return products.stream()
+                    .map(ProductResponse::new)
+                    .collect(Collectors.toList());
         }
     }
+
 }
