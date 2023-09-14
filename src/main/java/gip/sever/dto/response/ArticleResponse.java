@@ -1,7 +1,15 @@
 package gip.sever.dto.response;
 
 import gip.sever.domain.Article;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ArticleResponse {
     private Long id;
 

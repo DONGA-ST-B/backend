@@ -12,21 +12,24 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import static gip.sever.ResponseMessage.GET_ARTICLE_SUCCESS;
+import static gip.sever.ResponseMessage.GET_CART_SUCCESS;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/article")
 public class ArticleController {
 
     private final ArticleService articleService;
-    @GetMapping("/all")
+    /*@GetMapping("/all")
     public ResponseEntity<List<ArticleResponse>> getAllarticles() {
         List<ArticleResponse> articles = articleService.getAllarticles();
         return new ResponseEntity<>(articles, HttpStatus.OK);
-    }
+    }*/
     @GetMapping("/all")
     public ResponseEntity<SuccessResponse<List<ArticleResponse>>> getAllArticles() {
         List<ArticleResponse> articles = articleService.getAllarticles();
-        SuccessResponse<List<ArticleResponse>> successResponse = SuccessResponse.create("Successfully retrieved articles", articles);
+        SuccessResponse<List<ArticleResponse>> successResponse = SuccessResponse.create(GET_ARTICLE_SUCCESS.getMessage(), articles);
         return new ResponseEntity<>(successResponse, HttpStatus.OK);
     }
 }
