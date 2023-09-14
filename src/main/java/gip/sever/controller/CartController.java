@@ -3,11 +3,14 @@ package gip.sever.controller;
 
 import gip.sever.dto.request.CartRequest;
 import gip.sever.dto.response.CartResponse;
+import gip.sever.global.response.SuccessResponse;
 import gip.sever.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import static gip.sever.ResponseMessage.GET_CART_SUCCESS;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,8 +32,9 @@ public class CartController {
 
 
     @GetMapping("/{memberId}")
-    public ResponseEntity<CartResponse> getCart(@PathVariable Long memberId) throws Exception {
-        return new ResponseEntity<>( cartService.getCart(memberId), HttpStatus.OK);
+    public ResponseEntity<SuccessResponse<CartResponse>> getCart(@PathVariable Long memberId) throws Exception {
+        return ResponseEntity.ok(SuccessResponse.create(GET_CART_SUCCESS.getMessage(), cartService.getCart(memberId)));
+
     }
 
 }

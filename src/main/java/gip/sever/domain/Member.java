@@ -15,13 +15,17 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
-    private String account;
 
-    private String password;
+    private String email;
 
-    private String name;
+    @OneToOne
+    private GoogleUser googleUser;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-
     private List<Heart> hearts;
+
+    public Member(GoogleUser googleUser) {
+        this.googleUser = googleUser;
+        this.email = googleUser.getEmail();
+    }
 }

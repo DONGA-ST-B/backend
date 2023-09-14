@@ -4,7 +4,7 @@ import gip.sever.domain.Heart;
 import gip.sever.domain.Member;
 import gip.sever.domain.Product;
 import gip.sever.repository.HeartRepository;
-import gip.sever.repository.LoginRepository;
+import gip.sever.repository.MemberRepository;
 import gip.sever.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,14 +15,14 @@ public class HeartService {
 
     private final HeartRepository heartRepository;
     private final ProductRepository productRepository;
-    private final LoginRepository loginRepository;
+    private final MemberRepository memberRepository;
 
 
     public boolean toggleHeart(Long memberId, Long productId) {
         // member와 product를 사용하여 엔티티 조회
 
         Product product = productRepository.findById(productId).orElseThrow();
-        Member member = loginRepository.findById(memberId).orElseThrow();
+        Member member = memberRepository.findById(memberId).orElseThrow();
         Heart existingHeart = heartRepository.findByMemberAndProduct(member, product);
 
         if (existingHeart == null) {
