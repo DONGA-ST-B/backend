@@ -11,11 +11,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchResponse {
+    private Long id;
     private String title;
     private String imageURL;
     private String content;
 
     public SearchResponse(Product product) {
+        this.id = product.getId();
         this.title = product.getProductName();
         this.imageURL = product.getPhotoUrl();
         this.content = product.getProductName();

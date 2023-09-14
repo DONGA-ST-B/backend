@@ -15,7 +15,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(value = "/search")
+@RequestMapping(value = "/api/search")
 public class SearchController {
 
 
