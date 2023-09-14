@@ -24,7 +24,6 @@ public class OauthService {
     private final MemberRepository memberRepository;
 
     private final HttpServletResponse response;
-    private final HttpSession httpSession;
 
 
     public String request(String socialLoginType) throws IOException {
@@ -33,7 +32,7 @@ public class OauthService {
         return redirectURL;
     }
 
-    public void oauthLogin(String socialLoginType, String code) throws JsonProcessingException {
+    public void oauthLogin(HttpSession httpSession,String socialLoginType, String code) throws JsonProcessingException {
 
         ResponseEntity<String> accessTokenResponse = googleOauth.requestAccessToken(code);
         GoogleOauthToken OAuthToken = googleOauth.getAccessToken(accessTokenResponse);
@@ -41,6 +40,7 @@ public class OauthService {
         GoogleUser googleUser = googleOauth.getUserInfo(userInfoResponse);
         googleUserRepository.save(googleUser);
         httpSession.setAttribute("user", new SessionUser(googleUser));
+
 
         if (memberRepository.findByEmail(googleUser.getEmail()).isEmpty()) {
             memberRepository.save(new Member(googleUser));

@@ -5,10 +5,7 @@ import gip.sever.global.response.SuccessResponse;
 import gip.sever.service.MailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import static gip.sever.ResponseMessage.FALSE_HEART;
 import static gip.sever.ResponseMessage.MAIL_SUCCESS;
