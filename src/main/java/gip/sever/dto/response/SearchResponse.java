@@ -1,5 +1,6 @@
 package gip.sever.dto.response;
 
+import gip.sever.domain.Article;
 import gip.sever.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,4 +23,13 @@ public class SearchResponse {
         this.imageURL = product.getPhotoUrl();
         this.content = product.getProductName();
     }
+
+    public SearchResponse(Article product) {
+        this.id = product.getId();
+        this.title = product.getArticleTitle();
+        this.imageURL = product.getPhotoUrl();
+        this.content = product.getArticleContent();
+    }
+
+
 }

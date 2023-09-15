@@ -1,5 +1,6 @@
 package gip.sever.service;
 
+import gip.sever.domain.Article;
 import gip.sever.domain.Product;
 import gip.sever.dto.response.SearchResponse;
 import gip.sever.repository.ArticleRepository;
@@ -24,10 +25,7 @@ public class SearchService {
         List<SearchResponse> searchResponses =new ArrayList<>();
         productRepository.findByKeyword(keyword).orElseThrow().stream().forEach(product -> searchResponses.add(new SearchResponse(product)));
 
-        System.out.println(productRepository.findByKeyword(keyword).toString());
-
-        //        List<Article> articles = articleRepository.findByKeyword(keyword).orElseThrow();
-
+        articleRepository.findByKeyword(keyword).orElseThrow().stream().forEach(article -> searchResponses.add(new SearchResponse(article)));
 
 
         return searchResponses;
