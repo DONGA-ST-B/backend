@@ -1,5 +1,6 @@
 package gip.sever.domain;
 
+import gip.sever.dto.request.AdditionalRequest;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,6 +19,11 @@ public class Member {
 
     private String email;
 
+    private String presidentName;
+    private String businessName;
+    private String businessNumber;
+    private String type;
+
     @OneToOne
     private GoogleUser googleUser;
 
@@ -27,5 +33,12 @@ public class Member {
     public Member(GoogleUser googleUser) {
         this.googleUser = googleUser;
         this.email = googleUser.getEmail();
+    }
+
+    public void updateInfo(AdditionalRequest additionalRequest) {
+        this.presidentName = additionalRequest.getPresident();
+        this.businessName = additionalRequest.getBusinessName();
+        this.businessNumber = additionalRequest.getBusinessNumber();
+        this.type = additionalRequest.getType();
     }
 }

@@ -23,5 +23,5 @@ public class Article {
     private String photoUrl;       // 사진 URL(버킷)
     private String articleLink;    // 기사 링크
 
-
 }
+

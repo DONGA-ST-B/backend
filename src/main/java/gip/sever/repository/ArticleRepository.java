@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
+
+    @Query("select a from Article  as a where a.articleTitle like %:keyword% ")
+    Optional<List<Article>> findByKeyword(String keyword);
+
     List<Article> findAll();
-//    @Query("select p from Product p where p.productName like :keyword")
-// Optional<List<Article>> findByKeyword(String keyword);
 }
