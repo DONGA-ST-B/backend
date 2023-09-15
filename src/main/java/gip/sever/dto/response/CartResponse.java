@@ -24,7 +24,7 @@ public class CartResponse {
 
     public CartResponse(Cart cart) {
 
-//        this.cartItems=cart.getCartItems();
+      this.cartItems=cart.getCartItems();
         this.id=cart.getId();
 
     }

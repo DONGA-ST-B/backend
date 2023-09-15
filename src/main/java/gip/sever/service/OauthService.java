@@ -25,7 +25,6 @@ public class OauthService {
     private final MemberRepository memberRepository;
 
     private final HttpServletResponse response;
-    private final HttpSession httpSession;
 
 
     public String request(String socialLoginType) throws IOException {
@@ -42,6 +41,7 @@ public class OauthService {
         GoogleUser googleUser = googleOauth.getUserInfo(userInfoResponse);
         googleUserRepository.save(googleUser);
         httpSession.setAttribute("user", new SessionUser(googleUser));
+
 
         if (memberRepository.findByEmail(googleUser.getEmail()).isEmpty()) { // 회원가입
             memberRepository.save(new Member(googleUser));

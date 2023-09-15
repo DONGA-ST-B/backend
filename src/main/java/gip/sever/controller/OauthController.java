@@ -8,8 +8,10 @@ import gip.sever.service.OauthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -40,12 +42,14 @@ public class OauthController {
             return ResponseEntity.ok(SuccessResponse.create(LOGIN_SUCCESS.getMessage()));
         }
 
+
     }
 
     @GetMapping("/check")
-    public String check() {
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
-        return user.getName();
+    public String check(HttpServletRequest request) {
+        SessionUser user1 = (SessionUser) request.getSession(true).getAttribute("user");
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        return user1.getName();
     }
     @PostMapping("/additional")
     public ResponseEntity<SuccessResponse<String>> additionalInfo(AdditionalRequest additionalRequest) {

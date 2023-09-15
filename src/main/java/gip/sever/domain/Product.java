@@ -27,4 +27,7 @@ public class Product {
     private boolean isInCart; // 제품이 장바구니에 있는지 여부
     private int quantity;     // 제품의 수량
 
+    // 부가설명 필드 추가
+    @Column(length = 100)
+    private String additionalDescription;
 }
