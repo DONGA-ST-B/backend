@@ -22,4 +22,9 @@ public class SearchController {
     public List<SearchResponse> search(@RequestBody SearchRequest searchRequest) {
         return searchService.searchKeyword(searchRequest.getKeyword());
     }
+
+    @PostMapping("/{searchType}")
+    public List<SearchResponse> search(@PathVariable("searchType") String type ,@RequestBody SearchRequest searchRequest) {
+        return searchService.searchKeywordByType(searchRequest.getKeyword(),type);
+    }
 }

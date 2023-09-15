@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import gip.sever.domain.GoogleUser;
 import gip.sever.domain.Member;
 import gip.sever.domain.SessionUser;
+import gip.sever.dto.request.AdditionalRequest;
 import gip.sever.dto.request.GoogleOauthToken;
 import gip.sever.repository.GoogleUserRepository;
 import gip.sever.repository.MemberRepository;
@@ -32,7 +33,7 @@ public class OauthService {
         return redirectURL;
     }
 
-    public void oauthLogin(HttpSession httpSession,String socialLoginType, String code) throws JsonProcessingException {
+    public int oauthLogin(HttpSession httpSession,String socialLoginType, String code) throws JsonProcessingException {
 
         ResponseEntity<String> accessTokenResponse = googleOauth.requestAccessToken(code);
         GoogleOauthToken OAuthToken = googleOauth.getAccessToken(accessTokenResponse);
@@ -42,10 +43,18 @@ public class OauthService {
         httpSession.setAttribute("user", new SessionUser(googleUser));
 
 
-        if (memberRepository.findByEmail(googleUser.getEmail()).isEmpty()) {
+        if (memberRepository.findByEmail(googleUser.getEmail()).isEmpty()) { // 회원가입
             memberRepository.save(new Member(googleUser));
+            return 1;
         }
+        return 0;
 
+    }
+
+    public void additional(AdditionalRequest additionalRequest) {
+        Member member = memberRepository.findByEmail("helloworldgcc@gmail.com").orElseThrow();
+        member.updateInfo(additionalRequest);
+        memberRepository.save(member);
     }
 
 
