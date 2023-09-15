@@ -36,7 +36,7 @@ public class OauthController {
     public ResponseEntity<SuccessResponse<String>> callback(
             @PathVariable(name = "socialLoginType") String socialLoginType,
             @RequestParam(name = "code") String code) throws JsonProcessingException {
-        if(oauthService.oauthLogin(socialLoginType, code)==1){
+        if(oauthService.oauthLogin(httpSession,socialLoginType, code)==1){
             return ResponseEntity.ok(SuccessResponse.create(ADDITIONAL_INFO_NEED.getMessage()));
         }else{
             return ResponseEntity.ok(SuccessResponse.create(LOGIN_SUCCESS.getMessage()));

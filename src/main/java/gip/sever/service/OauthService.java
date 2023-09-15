@@ -33,7 +33,7 @@ public class OauthService {
         return redirectURL;
     }
 
-    public int oauthLogin(String socialLoginType, String code) throws JsonProcessingException {
+    public int oauthLogin(HttpSession httpSession,String socialLoginType, String code) throws JsonProcessingException {
 
         ResponseEntity<String> accessTokenResponse = googleOauth.requestAccessToken(code);
         GoogleOauthToken OAuthToken = googleOauth.getAccessToken(accessTokenResponse);
