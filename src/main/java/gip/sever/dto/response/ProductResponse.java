@@ -15,6 +15,7 @@ public class ProductResponse {
     private double price;
     private String photoUrl;
     private int likes;
+    private String kind;
     // 부가설명 필드 추가
     private String additionalDescription;
 
@@ -28,6 +29,7 @@ public class ProductResponse {
         this.likes = product.getLikes();
         this.isInCart = product.isInCart();
         this.quantity = product.getQuantity();
+        this.kind = product.getKind();
         this.additionalDescription =product.getAdditionalDescription();
     }
 }
