@@ -16,12 +16,14 @@ public class SearchResponse {
     private String title;
     private String imageURL;
     private String content;
+    private String type;
 
     public SearchResponse(Product product) {
         this.id = product.getId();
         this.title = product.getProductName();
         this.imageURL = product.getPhotoUrl();
         this.content = product.getProductName();
+        this.type = "Product";
     }
 
     public SearchResponse(Article product) {
@@ -29,6 +31,8 @@ public class SearchResponse {
         this.title = product.getArticleTitle();
         this.imageURL = product.getPhotoUrl();
         this.content = product.getArticleContent();
+        this.type = "Article";
+
     }
 
 

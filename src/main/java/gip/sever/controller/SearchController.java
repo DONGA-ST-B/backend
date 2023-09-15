@@ -5,10 +5,7 @@ import gip.sever.dto.response.SearchResponse;
 import gip.sever.service.SearchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +21,10 @@ public class SearchController {
     @PostMapping()
     public List<SearchResponse> search(@RequestBody SearchRequest searchRequest) {
         return searchService.searchKeyword(searchRequest.getKeyword());
+    }
+
+    @PostMapping("/{searchType}")
+    public List<SearchResponse> search(@PathVariable("searchType") String type ,@RequestBody SearchRequest searchRequest) {
+        return searchService.searchKeywordByType(searchRequest.getKeyword(),type);
     }
 }

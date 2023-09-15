@@ -32,4 +32,21 @@ public class SearchService {
 
 
     }
+
+    public List<SearchResponse> searchKeywordByType(String keyword,String type) {
+
+        List<SearchResponse> searchResponses =new ArrayList<>();
+
+        if (type.equals("Product")) {
+            productRepository.findByKeyword(keyword).orElseThrow().stream().forEach(product -> searchResponses.add(new SearchResponse(product)));
+            return searchResponses;
+
+        }
+        else{
+            articleRepository.findByKeyword(keyword).orElseThrow().stream().forEach(article -> searchResponses.add(new SearchResponse(article)));
+            return searchResponses;
+        }
+
+
+    }
 }
