@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,4 +33,18 @@ public class ProductService {
         }
     }
 
+    public ProductResponse getProduct(Long productId) throws Exception{
+        Optional<Product> productOptional = productRepository.findById(productId);
+        if (productOptional.isPresent()) {
+            Product product = productOptional.get();
+            ProductResponse productResponse = new ProductResponse();
+            productResponse.setId(product.getId());
+            productResponse.setProductName(product.getProductName());
+
+            return productResponse;
+        } else {
+            throw new IllegalArgumentException("Product not found for productId: " + productId);
+        }
+
+    }
 }
