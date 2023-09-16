@@ -26,9 +26,7 @@ public class HeartController {
     private final MemberRepository memberRepository;
 
     @PostMapping("/toggle/{productId}")
-    public ResponseEntity<SuccessResponse<String>> toggleHeart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) {
-
-//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+    public ResponseEntity<SuccessResponse<String>> toggleHeart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) throws Exception {
         SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
 
         Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
