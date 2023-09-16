@@ -3,10 +3,12 @@ package gip.sever.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import gip.sever.domain.SessionUser;
 import gip.sever.dto.request.AdditionalRequest;
+import gip.sever.global.exception.AdditionalException;
 import gip.sever.global.response.SuccessResponse;
 import gip.sever.service.OauthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
@@ -37,11 +39,11 @@ public class OauthController {
             @PathVariable(name = "socialLoginType") String socialLoginType,
             @RequestParam(name = "code") String code) throws JsonProcessingException {
         if(oauthService.oauthLogin(httpSession,socialLoginType, code)==1){
+//            throw new AdditionalException();
             return ResponseEntity.ok(SuccessResponse.create(ADDITIONAL_INFO_NEED.getMessage()));
         }else{
             return ResponseEntity.ok(SuccessResponse.create(LOGIN_SUCCESS.getMessage()));
         }
-
 
     }
 
