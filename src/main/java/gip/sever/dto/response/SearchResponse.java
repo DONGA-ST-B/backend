@@ -22,7 +22,7 @@ public class SearchResponse {
         this.id = product.getId();
         this.title = product.getProductName();
         this.imageURL = product.getPhotoUrl();
-        this.content = product.getProductName();
+        this.content = product.getAdditionalDescription();
         this.type = "Product";
     }
 
