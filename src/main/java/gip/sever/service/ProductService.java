@@ -34,17 +34,10 @@ public class ProductService {
     }
 
     public ProductResponse getProduct(Long productId) throws Exception{
-        Optional<Product> productOptional = productRepository.findById(productId);
-        if (productOptional.isPresent()) {
-            Product product = productOptional.get();
-            ProductResponse productResponse = new ProductResponse();
-            productResponse.setId(product.getId());
-            productResponse.setProductName(product.getProductName());
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new Exception("제품을 찾을 수 없습니다."));
+            return new ProductResponse(product);
 
-            return productResponse;
-        } else {
-            throw new IllegalArgumentException("Product not found for productId: " + productId);
-        }
 
     }
 }
