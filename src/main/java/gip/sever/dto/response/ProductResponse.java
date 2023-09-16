@@ -12,7 +12,7 @@ public class ProductResponse {
     private Long id;
 
     private String productName;
-    private double price;
+    private String price;
     private String photoUrl;
     private int likes;
     private String kind;
@@ -24,7 +24,7 @@ public class ProductResponse {
     private int quantity;     // 제품의 수량
     public ProductResponse(Product product) {
         this.productName = product.getProductName();
-        this.price = product.getPrice();
+        this.price = product.getPrice2();
         this.photoUrl = product.getPhotoUrl();
         this.likes = product.getLikes();
         this.isInCart = product.isInCart();
