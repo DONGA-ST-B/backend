@@ -34,4 +34,10 @@ public class ProductController {
         SuccessResponse<List<ProductResponse>> successResponse = SuccessResponse.create(GET_PRODUCT_SUCCESS.getMessage(), products);
         return new ResponseEntity<>(successResponse, HttpStatus.OK);
     }
+    @GetMapping("/{productId}")
+    public ResponseEntity<SuccessResponse<ProductResponse>> getproduct(@PathVariable Long productId) throws Exception {
+        ProductResponse productResponse = productService.getProduct(productId);
+        SuccessResponse<ProductResponse> successResponse = SuccessResponse.create(GET_PRODUCT_SUCCESS.getMessage(), productResponse);
+        return new ResponseEntity<>(successResponse, HttpStatus.OK);
+    }
 }

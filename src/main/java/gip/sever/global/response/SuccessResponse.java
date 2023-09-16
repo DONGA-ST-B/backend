@@ -18,7 +18,9 @@ public class SuccessResponse<T> {
     public static <T> SuccessResponse<T> create(String message) {
         return new SuccessResponse<>(true, message, null);
     }
-
+    public static <T> SuccessResponse<T> creat(String message) {
+        return new SuccessResponse<>(false, message, null);
+    }
     public static <T> SuccessResponse<T> create(String message, T data) {
         return new SuccessResponse<>(true, message, data);
     }

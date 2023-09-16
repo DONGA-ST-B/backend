@@ -1,5 +1,5 @@
 package gip.sever.repository;
-
+import gip.sever.domain.Cart;
 import gip.sever.domain.CartItem;
 import org.hibernate.annotations.Parameter;
 import org.springframework.data.jpa.repository.JpaRepository;

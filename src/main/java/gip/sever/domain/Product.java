@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -19,6 +21,7 @@ public class Product {
     private String photoUrl;
     private int likes;
 
+    private String kind;
     // 카테고리 필드
     @Enumerated(EnumType.STRING)
     private Category category;
