@@ -20,7 +20,10 @@ public enum ErrorCode {
     NICKNAME_DUPLICATION_ERROR("AU0003", "닉네임이 중복됩니다."),
 
     //팀멤버 에러 코드
-    TOO_MANY_TEAM_MEMBER_ERROR("TM0001", "팀 최대 개수 3을 초과했습니다");
+    TOO_MANY_TEAM_MEMBER_ERROR("TM0001", "팀 최대 개수 3을 초과했습니다"),
+
+
+    ADDITIONAL_INFO_NEED("300","추가정보 입력이 필요합니다");
 
     private String errorCode;
     private String message;
