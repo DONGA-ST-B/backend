@@ -1,14 +1,19 @@
 package gip.sever.controller;
 
 
+import gip.sever.domain.Member;
+import gip.sever.domain.SessionUser;
 import gip.sever.dto.request.CartRequest;
 //import gip.sever.dto.response.CartResponse;
 import gip.sever.dto.response.CartResponseDto;
 import gip.sever.global.response.SuccessResponse;
+import gip.sever.repository.MemberRepository;
 import gip.sever.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 import static gip.sever.ResponseMessage.*;
 
@@ -18,10 +23,16 @@ import static gip.sever.ResponseMessage.*;
 public class CartController {
 
     private final CartService cartService;
+    private final MemberRepository memberRepository;
 
-    @PostMapping("/add")
-    public ResponseEntity<SuccessResponse<String>> addToCart(@RequestBody CartRequest cartRequest) throws Exception {
-        boolean add =cartService.addToCart(cartRequest.getMemberId(), cartRequest.getProductId());
+    @PostMapping("/add/{productId}")
+    public ResponseEntity<SuccessResponse<String>> addToCart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) throws Exception {
+        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+
+        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
+        Long memberId = member.getId();
+
+        boolean add = cartService.addToCart(memberId, productId);
         if (add) {
             return ResponseEntity.ok(SuccessResponse.create(POST_PRODUCT_SUCCESS.getMessage()));
         } else {
@@ -30,15 +41,24 @@ public class CartController {
     }
 
 
-    @DeleteMapping("/remove")
-    public ResponseEntity<SuccessResponse<String>> removeFromCart(@RequestBody CartRequest cartRequest) throws Exception {
-        cartService.removeFromCart(cartRequest.getMemberId(), cartRequest.getProductId());
+    @DeleteMapping("/remove/{productId}")
+    public ResponseEntity<SuccessResponse<String>> removeFromCart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) throws Exception {
+        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+
+        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
+        Long memberId = member.getId();
+
+        cartService.removeFromCart(memberId, productId);
         return ResponseEntity.ok(SuccessResponse.create(DELETE_PRODUCT_SUCCESS.getMessage()));
     }
 
 
-    @GetMapping("/{memberId}")
-    public CartResponseDto.CartResponse getCart(@PathVariable Long memberId) throws Exception {
+    @GetMapping("")
+    public CartResponseDto.CartResponse getCart(HttpServletRequest request) throws Exception {
+        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+
+        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
+        Long memberId = member.getId();
         return cartService.getCart(memberId);
 
 

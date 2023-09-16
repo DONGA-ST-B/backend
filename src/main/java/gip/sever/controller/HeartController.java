@@ -23,13 +23,10 @@ import static gip.sever.ResponseMessage.*;
 public class HeartController {
 
     private final HeartService heartService;
-    private final HttpSession httpSession;
-
     private final MemberRepository memberRepository;
 
-
     @PostMapping("/toggle/{productId}")
-    public ResponseEntity<SuccessResponse<String>> toggleHeart(HttpServletRequest request, @PathVariable Long productId) {
+    public ResponseEntity<SuccessResponse<String>> toggleHeart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) {
 
 //        SessionUser user = (SessionUser) httpSession.getAttribute("user");
         SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");

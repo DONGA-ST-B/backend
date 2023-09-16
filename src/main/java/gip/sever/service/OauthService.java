@@ -42,7 +42,6 @@ public class OauthService {
         googleUserRepository.save(googleUser);
         httpSession.setAttribute("user", new SessionUser(googleUser));
 
-
         if (memberRepository.findByEmail(googleUser.getEmail()).isEmpty()) { // 회원가입
             memberRepository.save(new Member(googleUser));
             return 1;
