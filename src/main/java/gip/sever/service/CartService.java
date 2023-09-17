@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -36,13 +37,13 @@ public class CartService {
    public boolean addToCart(Long memberId, Long productId) throws Exception {
 
        Member member = memberRepository.findById(memberId).orElseThrow();
+
+//       Cart cart = cartRepository.findByMember(member).orElse(
+//               cartRepository.save(new Cart(member))
+//       );
        Cart cart = cartRepository.findByMember(member).orElseThrow();
 
-//       Cart cart = cartRepository.findByMemberId(memberId)
-//               .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
-
-       Product product = productRepository.findById(productId)
-               .orElseThrow();
+       Product product = productRepository.findById(productId).orElseThrow();
 
 
        boolean isAlreadyInCart = cart.getCartItems().stream()
@@ -59,11 +60,11 @@ public class CartService {
    }
     @Transactional
     public boolean removeFromCart(Long memberId, Long productId) throws Exception{
-        Cart cart = cartRepository.findByMemberId(memberId)
-                .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
+        Member member = memberRepository.findById(memberId).orElseThrow();
 
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("Product not found"));
+        Cart cart = cartRepository.findByMember(member).orElseThrow();
+
+        Product product = productRepository.findById(productId).orElseThrow();
 
         // 장바구니에서 해당 상품을 찾아서 삭제
         cart.getCartItems().removeIf(cartItem -> cartItem.getProduct().equals(product));
@@ -77,13 +78,8 @@ public class CartService {
         Member member = memberRepository.findById(memberId).orElseThrow();
         Cart cart = cartRepository.findByMember(member).orElseThrow();
 
-//        Cart cart = cartRepository.findByMemberId(memberId)
-//                .orElseThrow(() -> new Exception("계정을 찾을 수 없습니다."));
-
       List<CartItem> cartItems = cartItemRepository.findByMemberIdAndCartId(memberId, cart.getId());
-
-//
-        return new CartResponseDto.CartResponse(cart);
+      return new CartResponseDto.CartResponse(cart);
     }
 
 }

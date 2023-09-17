@@ -31,4 +31,9 @@ public class Cart {
 //    public void removeProduct(Product product) {
 //        cartItems.removeIf(item -> item.getProduct().equals(product));
 //    }
+
+
+    public Cart(Member member) {
+        this.member = member;
+    }
 }

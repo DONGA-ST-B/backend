@@ -1,11 +1,13 @@
 package gip.sever.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import gip.sever.domain.Cart;
 import gip.sever.domain.GoogleUser;
 import gip.sever.domain.Member;
 import gip.sever.domain.SessionUser;
 import gip.sever.dto.request.AdditionalRequest;
 import gip.sever.dto.request.GoogleOauthToken;
+import gip.sever.repository.CartRepository;
 import gip.sever.repository.GoogleUserRepository;
 import gip.sever.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class OauthService {
     private final GoogleOauth googleOauth;
     private final GoogleUserRepository googleUserRepository;
     private final MemberRepository memberRepository;
+    private final CartRepository cartRepository;
 
     private final HttpServletResponse response;
 
@@ -43,7 +46,8 @@ public class OauthService {
         httpSession.setAttribute("user", new SessionUser(googleUser));
 
         if (memberRepository.findByEmail(googleUser.getEmail()).isEmpty()) { // 회원가입
-            memberRepository.save(new Member(googleUser));
+            Member save = memberRepository.save(new Member(googleUser));
+            cartRepository.save(new Cart(save));
             return 1;
         }
         return 0;
