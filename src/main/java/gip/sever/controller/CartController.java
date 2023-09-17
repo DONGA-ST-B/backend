@@ -29,12 +29,12 @@ public class CartController {
 
     @PostMapping("/add/{productId}")
     public ResponseEntity<SuccessResponse<String>> addToCart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) throws Exception {
-        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+//        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
 
-        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
-        Long memberId = member.getId();
+//        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
+//        Long memberId = member.getId();
 
-        boolean add = cartService.addToCart(memberId, productId);
+        boolean add = cartService.addToCart(1L, productId);
         if (add) {
             return ResponseEntity.ok(SuccessResponse.create(POST_PRODUCT_SUCCESS.getMessage()));
         } else {
@@ -45,23 +45,23 @@ public class CartController {
 
     @DeleteMapping("/remove/{productId}")
     public ResponseEntity<SuccessResponse<String>> removeFromCart(HttpServletRequest request, @PathVariable(name = "productId") Long productId) throws Exception {
-        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+//        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
 
-        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
-        Long memberId = member.getId();
+//        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
+//        Long memberId = member.getId();
 
-        cartService.removeFromCart(memberId, productId);
+        cartService.removeFromCart(1L, productId);
         return ResponseEntity.ok(SuccessResponse.create(DELETE_PRODUCT_SUCCESS.getMessage()));
     }
 
 
     @GetMapping("")
     public CartResponseDto.CartResponse getCart(HttpServletRequest request) throws Exception {
-        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
+//        SessionUser user = (SessionUser) request.getSession(true).getAttribute("user");
 
-        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
-        Long memberId = member.getId();
-        return cartService.getCart(memberId);
+//        Member member = memberRepository.findByEmail(user.getEmail()).orElseThrow();
+//        Long memberId = member.getId();
+        return cartService.getCart(1L);
 
 
     }
