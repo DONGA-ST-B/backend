@@ -44,10 +44,10 @@ public class OauthController {
         if(oauthService.oauthLogin(httpSession,socialLoginType, code)==1){
 //            throw new AdditionalException();
             //redirect
-            response.sendRedirect("https://frontend-beta-ecru.vercel.app");
+            response.sendRedirect("https://frontend-beta-ecru.vercel.app/mypage");
 //            return ResponseEntity.ok(SuccessResponse.create(ADDITIONAL_INFO_NEED.getMessage()));
         }else{
-            response.sendRedirect("https://frontend-beta-ecru.vercel.app");
+            response.sendRedirect("https://frontend-beta-ecru.vercel.app/mypage");
 //            return ResponseEntity.ok(SuccessResponse.create(LOGIN_SUCCESS.getMessage()));
         }
 
