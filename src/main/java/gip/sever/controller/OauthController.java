@@ -14,6 +14,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
@@ -27,6 +28,8 @@ public class OauthController {
 
     private final OauthService oauthService;
     private final HttpSession httpSession;
+    private final HttpServletResponse response;
+
 
     @GetMapping(value = "/{socialLoginType}")
     public void socialLoginType(@PathVariable(name = "socialLoginType") String socialLoginType) throws IOException {
@@ -35,14 +38,17 @@ public class OauthController {
     }
 
     @GetMapping(value = "/{socialLoginType}/callback")
-    public ResponseEntity<SuccessResponse<String>> callback(
+    public void callback(
             @PathVariable(name = "socialLoginType") String socialLoginType,
-            @RequestParam(name = "code") String code) throws JsonProcessingException {
+            @RequestParam(name = "code") String code) throws IOException {
         if(oauthService.oauthLogin(httpSession,socialLoginType, code)==1){
 //            throw new AdditionalException();
-            return ResponseEntity.ok(SuccessResponse.create(ADDITIONAL_INFO_NEED.getMessage()));
+            //redirect
+            response.sendRedirect("https://frontend-beta-ecru.vercel.app");
+//            return ResponseEntity.ok(SuccessResponse.create(ADDITIONAL_INFO_NEED.getMessage()));
         }else{
-            return ResponseEntity.ok(SuccessResponse.create(LOGIN_SUCCESS.getMessage()));
+            response.sendRedirect("https://frontend-beta-ecru.vercel.app");
+//            return ResponseEntity.ok(SuccessResponse.create(LOGIN_SUCCESS.getMessage()));
         }
 
     }
